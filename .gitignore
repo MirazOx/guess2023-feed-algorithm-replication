@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Generated synthetic data (regenerated deterministically by the pipeline).
+# Tracked-by-default would bloat the repo; the seed makes it reproducible.
+data/synthetic_participants.csv
+
+# OS noise
+.DS_Store

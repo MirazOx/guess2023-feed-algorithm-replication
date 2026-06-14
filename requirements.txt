@@ -1,0 +1,13 @@
+# Core pipeline (the src/ modules need only these three):
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+
+# Used for the lasso covariate-selection step in the notebook and in
+# src/estimators.py. If scikit-learn is not installed, src/estimators.py
+# falls back to a simple correlation screen (see replication_log.md §4).
+scikit-learn>=1.3
+
+# Optional: only needed if you want to open the notebook locally rather than
+# in Google Colab.
+jupyter>=1.0
