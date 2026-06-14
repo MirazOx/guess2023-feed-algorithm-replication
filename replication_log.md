@@ -69,6 +69,19 @@ The paper documents ~19.5% attrition (balanced across arms, SM §S1.9) and a pre
 
 Because the result depends on a random draw, we re-ran the primary family across simulation seeds {2020, 7, 99}. In all three: **H3c on-platform engagement was significant** (adj. p between 1e-9 and 1e-14) and the cleanly-null attitudes (H1a, H1b, H2a, turnout) were **non-significant under the PATE** (min adj. p ≥ 0.12). The headline pattern is not a lucky seed. The reproduction of H2b (PATE-null but SATE-significant) is more seed-sensitive because it sits near the boundary by construction — which is itself faithful to the original, where that outcome is exactly the borderline case.
 
+## 14. Extension beyond the original: a design/power analysis
+
+The original reports minimum-detectable-effect calculations in SM §S9.2 but the published figures
+foreground the point estimates. We add a standalone **design/power analysis**
+(`src/power_analysis.py`) that reframes the central null: it derives the minimum detectable effect
+from the synthetic design (sample sizes, covariate R², weighting design effect) and confirms it by
+simulation (planting known effects and re-running the estimator; the false-positive rate lands at
+~5%). On our synthetic design the weighted PATE could detect an attitude effect of ~0.057 SD and
+the unweighted SATE ~0.033 SD at 80% power. This is an *interpretive extension*, not part of the
+original analysis pipeline, and it inherits the synthetic-data caveat (§1): the exact MDE depends
+on our modelled weights and covariate R², so treat ~0.05 SD as illustrative of the design's
+precision, not as the paper's official power figure.
+
 ---
 
 ### Bottom line

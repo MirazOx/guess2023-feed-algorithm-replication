@@ -57,6 +57,21 @@ Figures are in [`figures/`](figures/): forest plots for the first stage, primary
 
 ---
 
+## Design & power: is the null actually informative?
+
+A null result only means something if the study could have *detected* an effect. So this repo includes a **design/power analysis** ([`src/power_analysis.py`](src/power_analysis.py)) that asks: given the sample size, the covariate adjustment, and the survey weighting, how small an attitude effect could this design reliably find?
+
+| Estimand | Std. error (SD units) | Minimum detectable effect (80% power) |
+|---|---:|---:|
+| PATE (weighted, main-text) | ~0.020 | **~0.057 SD** |
+| SATE (unweighted) | ~0.012 | ~0.033 SD |
+
+The design has ~69% power to detect a 0.05 SD attitude effect under the PATE and ~99% under the SATE. Every observed attitudinal effect is *below* the detectable bound. So the nulls are **informative**: they are consistent with true effects smaller than roughly 0.05 SD — "no effect larger than a small bound," not "we couldn't tell." The closed-form power curve is confirmed by a simulation that plants known effects and re-runs the estimator (the false-positive rate lands at ~5%, as it should). See `figures/fig_power.png`.
+
+This is the part that distinguishes reading a result from understanding it.
+
+---
+
 ## Repo structure
 
 ```
@@ -70,6 +85,7 @@ guess2023-feed-algorithm-replication/
 │   ├── config.py              # outcome definitions + planted effect sizes (from the SM)
 │   ├── simulate_data.py       # synthetic dataset generator
 │   ├── estimators.py          # Lin estimator, HC2/HC1 SEs, sharpened FDR, IV check
+│   ├── power_analysis.py      # minimum-detectable-effect + power curve (analytic + simulation)
 │   └── run_replication.py     # end-to-end: simulate -> estimate -> tables -> figures
 ├── data/                      # generated synthetic CSV (created on first run)
 ├── results/                   # results tables (CSV)
@@ -85,6 +101,7 @@ guess2023-feed-algorithm-replication/
 ```bash
 pip install -r requirements.txt
 python src/run_replication.py          # writes data/, results/, figures/
+python src/power_analysis.py           # writes the design/power analysis + fig_power.png
 ```
 
 The `src/` modules reproduce the notebook's logic in importable form and add a no-scikit-learn fallback so the pipeline runs even on a minimal install.
