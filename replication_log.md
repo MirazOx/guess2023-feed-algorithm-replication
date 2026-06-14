@@ -6,6 +6,9 @@ Original paper: Guess, A. M., et al. (2023). *How do social media feed algorithm
 
 Each entry is tagged by how much it could change conclusions: **[major]**, **[moderate]**, **[minor]**.
 
+> **How to describe this work (please read before citing or presenting).**
+> This is a **methodological reconstruction on synthetic data**, not an empirical replication. It demonstrates that the paper's methods section can be read closely and re-implemented, and that the analysis pipeline recovers known effects and reproduces the study's qualitative pattern. It makes **no empirical claim about Facebook, Instagram, or real users** — the data is simulated and the effect sizes are planted from the published tables. Always present it as "a methodological reconstruction on synthetic data," never as "I replicated the Facebook study."
+
 ---
 
 ## 1. Data: synthetic, not the real thing **[major]**
